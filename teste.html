@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - CCP Soluções Contábeis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            background: #082464;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .test-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #082464;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .test-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .test-link {
+            background: #082464;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .test-link:hover {
+            background: #051b4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 Teste do Website CCP</h1>
+        <p>Verificação de funcionamento dos componentes</p>
+    </div>
+
+    <div class="test-item">
+        <h3>📁 Estrutura de Arquivos</h3>
+        <p id="file-test">Testando estrutura...</p>
+    </div>
+
+    <div class="test-item">
+        <h3>🎨 CSS Carregamento</h3>
+        <p id="css-test">Testando CSS...</p>
+    </div>
+
+    <div class="test-item">
+        <h3>⚙️ JavaScript</h3>
+        <p id="js-test">Testando JavaScript...</p>
+    </div>
+
+    <div class="test-item">
+        <h3>📱 Responsividade</h3>
+        <p id="responsive-test">Testando responsividade...</p>
+    </div>
+
+    <div class="test-item">
+        <h3>🔗 Links Internos</h3>
+        <p id="links-test">Testando links...</p>
+    </div>
+
+    <div class="test-links">
+        <a href="index.html" class="test-link">🏠 Página Inicial</a>
+        <a href="sobre.html" class="test-link">ℹ️ Sobre</a>
+        <a href="servicos.html" class="test-link">🛠️ Serviços</a>
+        <a href="contato.html" class="test-link">📞 Contato</a>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: #e9ecef; border-radius: 8px;">
+        <h3>📋 Checklist Rápido</h3>
+        <ul>
+            <li>✅ Abrir cada página e verificar se carrega corretamente</li>
+            <li>✅ Testar menu mobile (reduzir largura da tela)</li>
+            <li>✅ Verificar se as imagens estão carregando</li>
+            <li>✅ Testar formulário de contato</li>
+            <li>✅ Verificar links do WhatsApp e telefone</li>
+            <li>✅ Testar carrossel de depoimentos</li>
+            <li>✅ Verificar FAQ (abrir/fechar)</li>
+        </ul>
+    </div>
+
+    <script>
+        // Testes automáticos básicos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Teste de estrutura de arquivos
+            const fileTest = document.getElementById('file-test');
+            fileTest.innerHTML = '<span class="success">✅ Página de teste carregada corretamente</span>';
+
+            // Teste CSS
+            const cssTest = document.getElementById('css-test');
+            const computedStyle = window.getComputedStyle(document.body);
+            if (computedStyle.fontFamily.includes('Arial')) {
+                cssTest.innerHTML = '<span class="success">✅ CSS básico funcionando</span>';
+            } else {
+                cssTest.innerHTML = '<span class="error">❌ Problema com CSS</span>';
+            }
+
+            // Teste JavaScript
+            const jsTest = document.getElementById('js-test');
+            jsTest.innerHTML = '<span class="success">✅ JavaScript funcionando</span>';
+
+            // Teste responsividade
+            const responsiveTest = document.getElementById('responsive-test');
+            const width = window.innerWidth;
+            if (width < 768) {
+                responsiveTest.innerHTML = '<span class="success">✅ Modo mobile detectado</span>';
+            } else if (width < 1024) {
+                responsiveTest.innerHTML = '<span class="success">✅ Modo tablet detectado</span>';
+            } else {
+                responsiveTest.innerHTML = '<span class="success">✅ Modo desktop detectado</span>';
+            }
+
+            // Teste de links
+            const linksTest = document.getElementById('links-test');
+            const links = document.querySelectorAll('a[href$=".html"]');
+            linksTest.innerHTML = `<span class="success">✅ ${links.length} links internos encontrados</span>`;
+
+            console.log('🚀 Teste CCP Website concluído');
+        });
+
+        // Função para testar responsividade manualmente
+        function testResponsive() {
+            alert('Reduza o tamanho da janela para testar responsividade:\n\n• < 768px = Mobile\n• 768px - 1024px = Tablet\n• > 1024px = Desktop');
+        }
+    </script>
+
+    <div style="margin-top: 30px; text-align: center; padding: 20px; background: #082464; color: white; border-radius: 8px;">
+        <h3>🎯 Próximos Passos</h3>
+        <p>1. Substitua as imagens pelos arquivos reais da CCP</p>
+        <p>2. Atualize as informações de contato</p>
+        <p>3. Configure o formulário de contato</p>
+        <p>4. Teste em diferentes dispositivos</p>
+        <p>5. Configure hospedagem e domínio</p>
+    </div>
+</body>
+</html>

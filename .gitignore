@@ -1,0 +1,79 @@
+# Arquivos do Sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos de Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências
+node_modules/
+npm-cache/
+.npm/
+
+# Arquivos de Build
+dist/
+build/
+*.min.js
+*.min.css
+
+# Arquivos de Cache
+.cache/
+.parcel-cache/
+
+# Arquivos de Configuração Local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos Temporários
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Backups
+*.bak
+*.backup
+
+# Arquivos de Imagem Grandes (comente se necessário)
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+# *.svg
+
+# Arquivos do FTP
+.ftpconfig
+.ftppass
+
+# Arquivos do WordPress (se aplicável)
+wp-config.php
+wp-content/uploads/
+
+# Certificados SSL
+*.pem
+*.key
+*.crt
+
+# Pasta de documentação gerada
+docs/generated/
