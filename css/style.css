@@ -148,7 +148,7 @@ body {
 }
 
 .nav-brand .logo {
-    height: 50px;
+    height: 70px;
     width: auto;
 }
 
@@ -648,9 +648,29 @@ body {
 
 .about-image {
     width: 100%;
+    max-width: 300px;
     height: auto;
-    border-radius: var(--border-radius-lg);
+    border-radius: 50%;
     box-shadow: var(--shadow-lg);
+    margin: 0 auto;
+    display: block;
+}
+
+.image-caption {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-caption h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.image-caption p {
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 /* Mission Vision Values */
@@ -726,10 +746,11 @@ body {
 }
 
 .team-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 30px;
 }
 
 .team-img {
@@ -744,24 +765,36 @@ body {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 16px;
+    text-align: center;
 }
 
 .team-description {
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 32px;
+    text-align: center;
+}
+
+.team-info {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .team-highlights {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .highlight-item {
     display: flex;
     gap: 16px;
     align-items: center;
+    text-align: left;
+    width: 100%;
 }
 
 .highlight-icon {
@@ -1553,6 +1586,74 @@ body {
     padding-top: 20px;
     text-align: center;
     color: var(--gray-500);
+}
+
+/* WhatsApp Contact Section */
+.whatsapp-contact {
+    background: var(--gray-50);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    text-align: center;
+}
+
+.whatsapp-info {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.whatsapp-icon {
+    width: 80px;
+    height: 80px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    color: white;
+}
+
+.whatsapp-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.whatsapp-info p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.whatsapp-btn {
+    background: #25d366 !important;
+    border-color: #25d366 !important;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    margin-bottom: 20px;
+}
+
+.whatsapp-btn:hover {
+    background: #1eb757 !important;
+    border-color: #1eb757 !important;
+}
+
+.phone-info {
+    background: var(--white);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--gray-200);
+}
+
+.phone-info strong {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.phone-info small {
+    color: var(--text-secondary);
 }
 
 /* Responsive Design */

@@ -10,24 +10,23 @@ const CCP_CONFIG = {
     empresa: {
         nome: "CCP Soluções Contábeis",
         slogan: "Soluções Contábeis para Você e sua Empresa",
-        descricao: "Soluções contábeis modernas e eficientes para empresas de todos os segmentos. Sua parceira de confiança há mais de 25 anos.",
-        anosExperiencia: 25
+        descricao: "Soluções contábeis modernas e eficientes para empresas de todos os segmentos. Sua parceira de confiança há mais de 20 anos.",
+        anosExperiencia: 20
     },
 
     // Informações de Contato
     contato: {
-        telefone: "(51) 9999-9999",
-        telefoneSecundario: "(51) 3333-4444",
-        whatsapp: "5551999999999",
-        email: "contato@ccpcontabil.com.br",
-        emailComercial: "comercial@ccpcontabil.com.br",
+        telefone: "(48) 9222-6800",
+        telefoneObs: "Somente WhatsApp",
+        whatsapp: "5548922268000",
+        email: "admccpsolucoes@gmail.com",
         endereco: {
-            rua: "Rua das Flores, 123 - Sala 456",
-            bairro: "Centro",
-            cidade: "Porto Alegre",
-            estado: "RS",
-            cep: "90000-000",
-            completo: "Rua das Flores, 123 - Centro<br>Porto Alegre - RS"
+            rua: "Rua Ilha dos Corais, 60",
+            bairro: "Vargem do Bom Jesus",
+            cidade: "Florianópolis",
+            estado: "SC",
+            cep: "88056-597",
+            completo: "Rua Ilha dos Corais, 60 - Vargem do Bom Jesus<br>Florianópolis - SC"
         }
     },
 
@@ -43,7 +42,7 @@ const CCP_CONFIG = {
         facebook: "#",
         instagram: "#",
         linkedin: "#",
-        whatsapp: "https://api.whatsapp.com/send?phone=5551999999999"
+        whatsapp: "https://api.whatsapp.com/send?phone=5548922268000"
     },
 
     // Coordenadas para Google Maps
@@ -56,7 +55,7 @@ const CCP_CONFIG = {
     // Estatísticas da Empresa
     estatisticas: {
         clientesAtendidos: 500,
-        anosExperiencia: 25,
+        anosExperiencia: 20,
         satisfacao: 100,
         profissionais: 15
     },
@@ -90,9 +89,9 @@ const CCP_CONFIG = {
             icone: "fas fa-calculator"
         },
         {
-            titulo: "Contabilidade MEI",
-            descricao: "Gestão contábil especializada para microempreendedores individuais.",
-            icone: "fas fa-chart-line"
+            titulo: "Certificação Digital",
+            descricao: "ECF e ECNPJ - Certificados digitais para pessoa física e jurídica.",
+            icone: "fas fa-certificate"
         },
         {
             titulo: "Departamento Pessoal",
@@ -204,7 +203,7 @@ const CCP_CONFIG = {
 
     // Configurações de Formulário
     formulario: {
-        emailDestino: "contato@ccpcontabil.com.br",
+        emailDestino: "admccpsolucoes@gmail.com",
         assuntoDefault: "Contato via Website",
         mensagemSucesso: "Mensagem enviada com sucesso! Entraremos em contato em breve.",
         mensagemErro: "Erro ao enviar mensagem. Tente novamente ou entre em contato por telefone."
