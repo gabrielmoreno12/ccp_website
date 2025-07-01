@@ -152,6 +152,16 @@ body {
     width: auto;
 }
 
+.nav-brand a {
+    display: flex;
+    align-items: center;
+}
+
+.nav-brand a:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -378,6 +388,14 @@ body {
     border: 1px solid var(--gray-200);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.service-card:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
 .service-card::before {
