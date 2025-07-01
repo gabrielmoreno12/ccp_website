@@ -77,3 +77,15 @@ wp-content/uploads/
 
 # Pasta de documentação gerada
 docs/generated/
+
+# Arquivos de Teste
+*.test.js
+*.spec.js
+
+# Arquivos de auxilio
+README.md
+ALTERACOES-REALIZADAS.md
+CONFIGURACAO-DNS.md
+DNS-RAPIDO.md
+GUIA-IMPLEMENTACAO.md
+
