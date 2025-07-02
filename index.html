@@ -214,6 +214,28 @@
                         </div>
                     </div>
                 </div>
+                <!-- EXEMPLO: Novo feedback adicionado -->
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Serviço excepcional! A CCP nos ajudou a organizar toda nossa contabilidade e 
+                            ainda conseguiu reduzir nossos custos tributários significativamente."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4 class="author-name">Roberto Santos</h4>
+                                <p class="author-position">Diretor, TechSolutions Ltda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="testimonial-nav">
                 <button class="nav-btn prev-btn">
@@ -223,10 +245,79 @@
                     <span class="dot active" data-slide="0"></span>
                     <span class="dot" data-slide="1"></span>
                     <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
                 </div>
                 <button class="nav-btn next-btn">
                     <i class="fas fa-chevron-right"></i>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="feedback-form-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Compartilhe sua experiência</h2>
+                <p class="section-subtitle">Sua opinião é muito importante para nós! Deixe seu feedback e ajude outros empresários a conhecer nosso trabalho.</p>
+            </div>
+            <div class="feedback-form-wrapper">
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="customerName">Nome Completo</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPosition">Cargo/Posição</label>
+                            <input type="text" id="customerPosition" name="customerPosition" required>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="customerCompany">Empresa</label>
+                            <input type="text" id="customerCompany" name="customerCompany" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">E-mail</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Telefone</label>
+                        <input type="tel" id="customerPhone" name="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Avaliação</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="star"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerFeedback">Seu Comentário</label>
+                        <textarea id="customerFeedback" name="customerFeedback" rows="4" 
+                                placeholder="Conte-nos sobre sua experiência com a CCP Soluções Contábeis..." required></textarea>
+                    </div>
+                    <div class="form-group submit-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Feedback
+                        </button>
+                    </div>
+                    <p class="feedback-note">
+                        <i class="fas fa-info-circle"></i>
+                        Seu feedback será analisado pela nossa equipe antes de ser publicado no site.
+                    </p>
+                </form>
             </div>
         </div>
     </section>
@@ -325,6 +416,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/components.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

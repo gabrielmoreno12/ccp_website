@@ -207,6 +207,14 @@ const CCP_CONFIG = {
         assuntoDefault: "Contato via Website",
         mensagemSucesso: "Mensagem enviada com sucesso! Entraremos em contato em breve.",
         mensagemErro: "Erro ao enviar mensagem. Tente novamente ou entre em contato por telefone."
+    },
+
+    // Configurações do EmailJS
+    emailjs: {
+        publicKey: "SstEuvyBf-iuBKKja", // Adicione sua Public Key do EmailJS aqui
+        serviceID: "service_ovj7gch", // Adicione seu Service ID aqui  
+        templateID: "template_4z0oxjn", // Template ID para feedback
+        adminEmail: "admccpsolucoes@gmail.com"
     }
 };
 

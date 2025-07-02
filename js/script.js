@@ -5,10 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialsCarousel();
     initFAQ();
     initContactForm();
+    initFeedbackForm();
     initAnimatedCounters();
     initScrollEffects();
     initAOS();
     initSmoothScrolling();
+    
+    // Check EmailJS
+    console.log('EmailJS disponível:', typeof window.emailjs !== 'undefined');
+    if (typeof window.emailjs !== 'undefined') {
+        console.log('EmailJS carregado com sucesso');
+    } else {
+        console.warn('EmailJS não foi carregado. Verifique se o script está incluído.');
+    }
 });
 
 // Mobile Menu Toggle
@@ -218,6 +227,369 @@ function initContactForm() {
     }
 }
 
+// Feedback Form Functionality
+function initFeedbackForm() {
+    const feedbackForm = document.getElementById('feedbackForm');
+    
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', handleFeedbackSubmit);
+        
+        // Initialize star rating functionality
+        const starRating = document.querySelector('.star-rating');
+        if (starRating) {
+            const stars = starRating.querySelectorAll('.star');
+            const radioInputs = starRating.querySelectorAll('input[type="radio"]');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('mouseenter', () => highlightStars(stars, index));
+                star.addEventListener('mouseleave', () => resetStars(stars, radioInputs));
+                star.addEventListener('click', () => selectStars(stars, radioInputs, index));
+            });
+        }
+    }
+}
+
+function highlightStars(stars, index) {
+    stars.forEach((star, i) => {
+        if (i >= index) {
+            star.style.color = '#fbbf24';
+        } else {
+            star.style.color = '#d1d5db';
+        }
+    });
+}
+
+function resetStars(stars, radioInputs) {
+    const checkedInput = Array.from(radioInputs).find(input => input.checked);
+    if (checkedInput) {
+        const checkedIndex = Array.from(radioInputs).indexOf(checkedInput);
+        highlightStars(stars, checkedIndex);
+    } else {
+        stars.forEach(star => {
+            star.style.color = '#d1d5db';
+        });
+    }
+}
+
+function selectStars(stars, radioInputs, index) {
+    radioInputs[index].checked = true;
+    highlightStars(stars, index);
+}
+
+async function handleFeedbackSubmit(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Get form values
+    const feedbackData = {
+        nome: formData.get('customerName'),
+        posicao: formData.get('customerPosition'),
+        empresa: formData.get('customerCompany'),
+        email: formData.get('customerEmail'),
+        telefone: formData.get('customerPhone'),
+        avaliacao: formData.get('rating'),
+        comentario: formData.get('customerFeedback')
+    };
+    
+    // Validate form
+    if (!validateFeedbackForm(feedbackData)) {
+        return;
+    }
+    
+    // Show loading state
+    setFormLoading(form, true);
+    
+    try {
+        const result = await sendFeedbackEmail(feedbackData);
+        
+        if (result.success) {
+            let successMessage = 'Obrigado pelo seu feedback! ';
+            
+            switch (result.method) {
+                case 'emailjs':
+                    successMessage += 'Sua avaliação foi enviada automaticamente e será analisada em breve.';
+                    break;
+                case 'formsubmit':
+                    successMessage += 'Sua avaliação foi enviada com sucesso e será analisada em breve.';
+                    break;
+                case 'mailto':
+                    successMessage += 'Seu cliente de email foi aberto. Por favor, envie o email para completar o processo.';
+                    break;
+                default:
+                    successMessage += 'Sua avaliação será analisada e publicada em breve.';
+            }
+            
+            showFeedbackMessage('success', successMessage);
+            form.reset();
+            resetStarRating();
+        } else {
+            throw new Error('Falha no envio');
+        }
+    } catch (error) {
+        console.error('Erro ao enviar feedback:', error);
+        
+        if (error.message === 'popup_blocked') {
+            showFeedbackMessage('error', `
+                Não foi possível abrir automaticamente seu cliente de email. 
+                <br><br>
+                <strong>Por favor, envie manualmente um email para:</strong>
+                <br>📧 admccpsolucoes@gmail.com
+                <br><br>
+                Com o assunto: <strong>"Nova Avaliação - ${feedbackData.nome}"</strong>
+                <br>E inclua suas informações e comentário.
+            `);
+        } else {
+            showFeedbackMessage('error', 'Erro ao enviar feedback. Tente novamente ou entre em contato conosco diretamente pelo WhatsApp.');
+        }
+    } finally {
+        setFormLoading(form, false);
+    }
+}
+
+function validateFeedbackForm(data) {
+    const errors = [];
+    
+    if (!data.nome || data.nome.trim().length < 2) {
+        errors.push('Nome deve ter pelo menos 2 caracteres');
+    }
+    
+    if (!data.posicao || data.posicao.trim().length < 2) {
+        errors.push('Posição deve ter pelo menos 2 caracteres');
+    }
+    
+    if (!data.empresa || data.empresa.trim().length < 2) {
+        errors.push('Nome da empresa deve ter pelo menos 2 caracteres');
+    }
+    
+    if (!data.email || !isValidEmail(data.email)) {
+        errors.push('E-mail deve ter um formato válido');
+    }
+    
+    if (!data.telefone || data.telefone.trim().length < 10) {
+        errors.push('Telefone deve ter pelo menos 10 dígitos');
+    }
+    
+    if (!data.avaliacao) {
+        errors.push('Selecione uma avaliação com estrelas');
+    }
+    
+    if (!data.comentario || data.comentario.trim().length < 10) {
+        errors.push('Comentário deve ter pelo menos 10 caracteres');
+    }
+    
+    if (errors.length > 0) {
+        showFeedbackMessage('error', 'Por favor, corrija os seguintes erros:\n• ' + errors.join('\n• '));
+        return false;
+    }
+    
+    return true;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+async function sendFeedbackEmail(data) {
+    const starsDisplay = '⭐'.repeat(parseInt(data.avaliacao));
+    
+    console.log('🚀 Iniciando envio de feedback...');
+    
+    // Método 1: FormSubmit (mais confiável que EmailJS)
+    console.log('📧 Tentando FormSubmit...');
+    
+    try {
+        const formData = new FormData();
+        formData.append('_to', 'admccpsolucoes@gmail.com');
+        formData.append('_subject', 'Nova Avaliação - CCP Soluções Contábeis');
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+        formData.append('_next', 'https://formsubmit.co/thankyou');
+        
+        // Dados do cliente
+        formData.append('Nome', data.nome);
+        formData.append('Posição', data.posicao);
+        formData.append('Empresa', data.empresa);
+        formData.append('Email', data.email);
+        formData.append('Telefone', data.telefone);
+        formData.append('Avaliação', `${data.avaliacao}/5 estrelas ${starsDisplay}`);
+        formData.append('Comentário', data.comentario);
+        formData.append('Data de Envio', new Date().toLocaleString('pt-BR'));
+        formData.append('Origem', 'Formulário de Feedback - Site CCP');
+        
+        console.log('📤 Enviando via FormSubmit...');
+        
+        const response = await fetch('https://formsubmit.co/ajax/admccpsolucoes@gmail.com', {
+            method: 'POST',
+            body: formData
+        });
+        
+        console.log('📨 Resposta FormSubmit:', response.status);
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log('✅ FormSubmit resultado:', result);
+            
+            if (result.success) {
+                console.log('🎉 Email enviado com sucesso via FormSubmit!');
+                return { success: true, method: 'formsubmit' };
+            }
+        }
+        
+    } catch (error) {
+        console.error('❌ Erro no FormSubmit:', error);
+    }
+    
+    // Método 2: EmailJS como fallback
+    if (typeof emailjs !== 'undefined') {
+        console.log('📧 Tentando EmailJS como fallback...');
+        
+        try {
+            emailjs.init(CCP_CONFIG.emailjs.publicKey);
+            
+            const templateParams = {
+                to_name: "CCP Soluções Contábeis",
+                to_email: "admccpsolucoes@gmail.com", 
+                from_name: data.nome,
+                from_email: data.email,
+                subject: 'Nova Avaliação - CCP Soluções Contábeis',
+                message: `
+NOVA AVALIAÇÃO RECEBIDA
+
+Nome: ${data.nome}
+Posição: ${data.posicao}
+Empresa: ${data.empresa}
+Email: ${data.email}
+Telefone: ${data.telefone}
+Avaliação: ${data.avaliacao}/5 ${starsDisplay}
+Comentário: ${data.comentario}
+Data: ${new Date().toLocaleString('pt-BR')}
+
+Esta avaliação precisa ser analisada e aprovada antes da publicação.
+                `.trim()
+            };
+            
+            console.log('📤 Enviando via EmailJS...');
+            
+            const response = await emailjs.send(
+                CCP_CONFIG.emailjs.serviceID,
+                CCP_CONFIG.emailjs.templateID,
+                templateParams
+            );
+            
+            console.log('📨 Resposta EmailJS:', response);
+            
+            if (response && response.status === 200) {
+                console.log('✅ Email enviado com sucesso via EmailJS!');
+                return { success: true, method: 'emailjs' };
+            }
+            
+        } catch (error) {
+            console.error('❌ Erro no EmailJS:', error);
+        }
+    }
+    
+    // Método 3: Mailto como último recurso
+    console.log('📧 Usando mailto como último recurso...');
+    
+    const emailBody = `
+NOVA AVALIAÇÃO RECEBIDA - CCP Soluções Contábeis
+
+DADOS DO CLIENTE:
+Nome: ${data.nome}
+Posição: ${data.posicao}  
+Empresa: ${data.empresa}
+E-mail: ${data.email}
+Telefone: ${data.telefone}
+
+AVALIAÇÃO:
+Estrelas: ${data.avaliacao}/5 ${starsDisplay}
+Comentário: ${data.comentario}
+
+Data: ${new Date().toLocaleString('pt-BR')}
+
+---
+Esta avaliação foi enviada através do formulário de feedback do site.
+Para aprovar e publicar, adicione manualmente à seção de depoimentos.
+    `.trim();
+    
+    const subject = encodeURIComponent('Nova Avaliação - CCP Soluções Contábeis');
+    const body = encodeURIComponent(emailBody);
+    const mailtoUrl = `mailto:admccpsolucoes@gmail.com?subject=${subject}&body=${body}`;
+    
+    console.log('📧 Abrindo cliente de email...');
+    
+    try {
+        const mailWindow = window.open(mailtoUrl, '_blank');
+        
+        if (!mailWindow || mailWindow.closed || typeof mailWindow.closed === 'undefined') {
+            throw new Error('popup_blocked');
+        }
+        
+        console.log('✅ Cliente de email aberto com sucesso!');
+        return { success: true, method: 'mailto' };
+        
+    } catch (error) {
+        console.error('❌ Erro ao abrir cliente de email:', error);
+        throw error;
+    }
+}
+
+function setFormLoading(form, loading) {
+    if (loading) {
+        form.classList.add('loading');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        }
+    } else {
+        form.classList.remove('loading');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Feedback';
+        }
+    }
+}
+
+function showFeedbackMessage(type, message) {
+    // Remove existing message
+    const existingMessage = document.querySelector('.feedback-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create new message
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `feedback-message ${type}`;
+    messageDiv.innerHTML = message.replace(/\n/g, '<br>');
+    
+    const form = document.getElementById('feedbackForm');
+    form.parentElement.insertBefore(messageDiv, form);
+    
+    // Auto-remove success messages after 5 seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            if (messageDiv.parentElement) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+    
+    // Scroll to message
+    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetStarRating() {
+    const stars = document.querySelectorAll('.star-rating .star');
+    stars.forEach(star => {
+        star.style.color = '#d1d5db';
+    });
+}
+
 // Form Validation
 function validateForm(data) {
     const errors = [];
@@ -240,12 +612,6 @@ function validateForm(data) {
     }
     
     return true;
-}
-
-// Email Validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
 }
 
 // Notification System
