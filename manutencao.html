@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site em Manutenção - CCP Soluções Contábeis</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #082464 0%, #1a3a8a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Partículas de fundo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { top: 40%; left: 70%; animation-delay: 4s; }
+        .particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 1s; }
+        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
+        }
+
+        /* Container principal */
+        .maintenance-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            margin-bottom: 40px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .logo img {
+            height: 80px;
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Ícone de manutenção */
+        .maintenance-icon {
+            font-size: 80px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Título */
+        .maintenance-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Subtítulo */
+        .maintenance-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Mensagem */
+        .maintenance-message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .maintenance-message p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Informações de contato */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            font-size: 20px;
+            width: 25px;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botões sociais */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* Previsão de retorno */
+        .return-estimate {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffffff;
+        }
+
+        .return-estimate h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .return-estimate p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                padding: 20px 15px;
+            }
+
+            .maintenance-title {
+                font-size: 2rem;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .maintenance-icon {
+                font-size: 60px;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .maintenance-message {
+                padding: 20px;
+            }
+
+            .contact-info {
+                gap: 10px;
+            }
+
+            .contact-item {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .maintenance-title {
+                font-size: 1.8rem;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1rem;
+            }
+
+            .maintenance-message p {
+                font-size: 1rem;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="maintenance-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/logo.png" alt="CCP Soluções Contábeis">
+        </div>
+
+        <!-- Ícone de manutenção -->
+        <div class="maintenance-icon">
+            <i class="fas fa-cog"></i>
+        </div>
+
+        <!-- Título -->
+        <h1 class="maintenance-title">Site em Manutenção</h1>
+
+        <!-- Subtítulo -->
+        <p class="maintenance-subtitle">
+            Estamos trabalhando para melhorar sua experiência
+        </p>
+
+        <!-- Mensagem principal -->
+        <div class="maintenance-message">
+            <p>
+                <strong>Nosso site está temporariamente fora do ar</strong> para manutenção e melhorias. 
+                Estamos implementando novas funcionalidades para oferecer um serviço ainda melhor.
+            </p>
+            <p>
+                Durante este período, nossa equipe continua atendendo normalmente através dos 
+                canais de contato abaixo. Não hesite em nos procurar!
+            </p>
+        </div>
+
+        <!-- Informações de contato -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/5511999999999" target="_blank">
+                    (11) 99999-9999
+                </a>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:contato@ccpcontabil.com.br">
+                    contato@ccpcontabil.com.br
+                </a>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+551133334444">
+                    (11) 3333-4444
+                </a>
+            </div>
+        </div>
+
+        <!-- Redes sociais -->
+        <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <!-- Previsão de retorno -->
+        <div class="return-estimate">
+            <h3><i class="fas fa-clock"></i> Previsão de Retorno</h3>
+            <p>
+                Estimamos que o site estará de volta em algumas horas. 
+                Agradecemos sua compreensão e paciência.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Adicionar mais partículas dinamicamente
+        function createParticles() {
+            const particles = document.querySelector('.particles');
+            
+            for (let i = 6; i <= 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Inicializar partículas
+        createParticles();
+
+        // Atualizar data/hora atual
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            
+            // Você pode adicionar isso se quiser mostrar a data/hora da manutenção
+            console.log('Manutenção iniciada em:', now.toLocaleDateString('pt-BR', options));
+        }
+
+        updateDateTime();
+    </script>
+</body>
+</html>

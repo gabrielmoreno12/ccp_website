@@ -202,13 +202,13 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    gap: 5px;
-    padding: 5px;
+    gap: 8px;
+    padding: 8px;
 }
 
 .bar {
     width: 28px;
-    height: 4px;
+    height: 3px;
     background: var(--text-primary);
     transition: var(--transition);
     border-radius: 2px;
@@ -216,7 +216,7 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
+    padding: 100px 0 50px; /* Era 80px - aumentei para 100px */
     background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
     position: relative;
     overflow: hidden;
@@ -1767,6 +1767,24 @@ body {
     animation: slideInTop 0.8s ease-out forwards;
 }
 
+/* Animação específica para botões */
+.btn-slide-in {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInFromLeft 0.8s ease-out forwards;
+    animation-delay: 1.2s;
+}
+
+/* Animação para botões da seção CTA */
+.cta-section .btn-slide-in {
+    animation-delay: 0.5s;
+}
+
+/* Animação para botões na página de contato */
+.contact-section .btn-slide-in {
+    animation-delay: 0.8s;
+}
+
 .animate-delay-1 {
     animation-delay: 0.3s;
 }
@@ -1891,40 +1909,49 @@ body {
     }
     
     .hamburger.active .bar:nth-child(1) {
-        transform: translateY(12px) rotate(45deg);
+        transform: translateY(9px) rotate(45deg);
     }
     
     .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-12px) rotate(-45deg);
+        transform: translateY(-9px) rotate(-45deg);
     }
     
-    /* Logo ajustado para mobile */
+    /* Logo ainda menor para tablets */
     .logo {
-        height: 35px;
+        height: 32px;
     }
     
-    /* Ajustar altura do navbar em mobile */
+    /* Header mais compacto para tablets */
     .navbar {
-        padding: 6px 0;
+        padding: 4px 0;
     }
     
-    /* Garantir que o hamburger apareça */
+    /* Hamburger com melhor espaçamento para tablets */
     .hamburger {
         display: block !important;
         cursor: pointer;
         z-index: 1000;
         flex-direction: column;
-        gap: 8px;
-        padding: 8px;
+        gap: 6px;
+        padding: 6px;
     }
     
     .bar {
-        width: 32px;
-        height: 4px;
+        width: 30px;
+        height: 3px;
         background: var(--text-primary);
         transition: var(--transition);
         display: block;
         border-radius: 2px;
+    }
+    
+    /* Ajustar transformações do hamburger para o novo espaçamento */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
     
     /* Ocultar imagem do hero em mobile */
@@ -1941,7 +1968,7 @@ body {
     
     /* Hero Section */
     .hero {
-        padding: 80px 0 50px;
+        padding: 100px 0 50px; /* Era 80px - aumentei para 100px */
         text-align: center;
     }
     
@@ -2067,204 +2094,24 @@ body {
 
 /* Smartphones */
 @media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-    
-    /* Typography */
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
-        text-align: center;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-        text-align: justify;
-    }
-    
-    /* Logo para smartphones */
-    .logo {
-        height: 30px;
-    }
-    
-    /* Navbar menor para smartphones */
-    .navbar {
-        padding: 4px 0;
-    }
-    
-    /* Garantir que a imagem do hero permaneça oculta */
-    .hero-image {
-        display: none !important;
-            visibility: hidden;
-            width: 0;
-            height: 0;
-            margin: 0;
-            padding: 0;
-    }
-    
-    /* Buttons */
-    .btn {
-        padding: 12px 20px;
-        font-size: 15px;
-    }
-    
-    /* Service Cards */
-    .service-card {
-        padding: 20px 12px;
-    }
-    
-    .service-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-        margin-bottom: 16px;
-    }
-    
-    .service-title {
-        font-size: 1.2rem;
-        margin-bottom: 12px;
-    }
-    
-    .service-description {
-        font-size: 0.9rem;
-    }
-    
-    /* Sections */
-    .section {
-        padding: 60px 0;
+    .hero {
+        padding: 90px 0 40px; /* Era 60px - aumentei para 90px */
     }
     
     .hero {
-        padding: 70px 0 40px;
+        padding: 90px 0 40px; /* Era 70px - aumentei para 90px */
     }
     
-    /* Contact Forms */
-    .contact-form-container,
-    .contact-info {
-        padding: 24px 20px;
-    }
-    
-    .form-title {
-        font-size: 1.5rem;
-    }
-    
-    /* Team */
-    .team-title {
-        font-size: 1.5rem;
-    }
-    
-    /* Stats */
-    .stat-number {
-        font-size: 2rem;
-    }
-    
-    /* Footer */
-    .footer {
-        padding: 40px 0 20px;
-    }
-    
-    .footer-brand {
-        max-width: 100%;
-    }
-    
-    /* CTA */
-    .cta-title {
-        font-size: 1.8rem;
-    }
-    
-    .cta-subtitle {
-        font-size: 1rem;
-    }
-    
-    /* Page Headers */
-    .page-title {
-        font-size: 2rem;
-    }
-    
-    /* Testimonials */
-    .testimonial-content {
-        padding: 32px 24px;
-    }
-    
-    .testimonial-text {
-        font-size: 1rem;
-    }
-    
-    /* Map */
-    .map-placeholder iframe {
-        height: 300px;
-    }
-    
-    .map-info {
-        padding: 24px;
-    }
-    
-    /* Animations mais suaves para mobile */
-    .slide-in-left,
-    .animate-slide-left {
-        animation-delay: 0.2s;
-        transform: translateX(-30px);
-    }
-}
-
-/* Smartphones muito pequenos */
-@media (max-width: 360px) {
     .container {
-        padding: 0 8px;
-    }
-    
-    .hero-content {
-        padding: 0 !important;
+        padding: 0 5px !important;
         width: 100% !important;
+        max-width: 100% !important;
     }
     
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .btn {
-        padding: 10px 16px;
-        font-size: 14px;
-    }
-    
-    .service-card {
-        padding: 16px 12px;
-    }
-    
-    .contact-form-container,
-    .contact-info {
-        padding: 20px 16px;
-    }
-}
-
-/* Landscape para smartphones */
-@media (max-width: 768px) and (orientation: landscape) {
-    .hero {
-        padding: 90px 0 40px;
-    }
-    
-    .hero-title {
-        font-size: 2.2rem;
-    }
-    
-    .section {
-        padding: 50px 0;
-    }
-}
-
-/* Ajustes específicos para mobile - hero ocupa toda largura */
-@media (max-width: 768px) {
     .hero .container {
-        padding: 0 10px !important;
+        padding: 0 5px !important;
+        width: 100% !important;
+        display: block !important;
     }
     
     .hero-content {
@@ -2274,32 +2121,66 @@ body {
         margin: 0 !important;
     }
     
-    .hero-title,
-    .hero-subtitle {
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        text-align: center;
         width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 0 0 20px 0;
     }
     
-    .hero-buttons {
+    .hero-subtitle {
+        font-size: 1rem;
+        text-align: justify;
         width: 100%;
-        justify-content: center;
+        margin: 0 0 28px 0;
+        padding: 0 5px;
+    }
+    
+    /* Header ainda menor para smartphones */
+    .navbar {
+        padding: 2px 0;
+    }
+    
+    .logo {
+        height: 28px;
+    }
+    
+    /* Hamburger ajustado */
+    .hamburger {
+        gap: 5px;
+        padding: 4px;
+    }
+    
+    .bar {
+        width: 26px;
+        height: 3px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
+    .container {
+        padding: 0 3px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
     .hero .container {
-        padding: 0 8px !important;
+        padding: 0 3px !important;
+        width: 100% !important;
     }
-}
-
-/* Ajustar padding para páginas internas em mobile */
-.page-header {
-    padding: 100px 0 60px;
-}
-
-/* Seções que vêm logo após o header */
-.services-overview,
-.contact-section {
-    padding: 70px 0 80px;
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin: 0 8px 24px 8px;
+    }
+    
+    /* Hero com ainda mais espaço do header */
+    .hero {
+        padding: 80px 0 35px; /* Era 55px - aumentei para 80px */
+    }
 }

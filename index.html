@@ -3,378 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site em Manutenção - CCP Soluções Contábeis</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <title>CCP Soluções Contábeis - Contabilidade Moderna e Eficiente</title>
+    <meta name="description" content="CCP Soluções Contábeis oferece serviços de contabilidade completos para empresas de todos os segmentos. Mais de 25 anos de experiência no mercado.">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Reset e Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #082464 0%, #1a3a8a 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-        }
-
-        /* Partículas de fundo */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 60%; left: 30%; animation-delay: 2s; }
-        .particle:nth-child(3) { top: 40%; left: 70%; animation-delay: 4s; }
-        .particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 1s; }
-        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 3s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
-        }
-
-        /* Container principal */
-        .maintenance-container {
-            text-align: center;
-            max-width: 600px;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Logo */
-        .logo {
-            margin-bottom: 40px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .logo img {
-            height: 80px;
-            filter: brightness(0) invert(1);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Ícone de manutenção */
-        .maintenance-icon {
-            font-size: 80px;
-            color: #ffffff;
-            margin-bottom: 30px;
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Título */
-        .maintenance-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        /* Subtítulo */
-        .maintenance-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Mensagem */
-        .maintenance-message {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .maintenance-message p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* Informações de contato */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .contact-item i {
-            font-size: 20px;
-            width: 25px;
-        }
-
-        .contact-item a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* Botões sociais */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 20px;
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        /* Previsão de retorno */
-        .return-estimate {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #ffffff;
-        }
-
-        .return-estimate h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .return-estimate p {
-            opacity: 0.9;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .maintenance-container {
-                padding: 20px 15px;
-            }
-
-            .maintenance-title {
-                font-size: 2rem;
-            }
-
-            .maintenance-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .maintenance-icon {
-                font-size: 60px;
-            }
-
-            .logo img {
-                height: 60px;
-            }
-
-            .maintenance-message {
-                padding: 20px;
-            }
-
-            .contact-info {
-                gap: 10px;
-            }
-
-            .contact-item {
-                padding: 12px;
-                font-size: 0.9rem;
-            }
-
-            .social-links {
-                gap: 15px;
-            }
-
-            .social-link {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .maintenance-title {
-                font-size: 1.8rem;
-            }
-
-            .maintenance-subtitle {
-                font-size: 1rem;
-            }
-
-            .maintenance-message p {
-                font-size: 1rem;
-            }
-
-            .contact-item {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-            }
-        }
-    </style>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
-    <!-- Partículas de fundo -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
+    <!-- Header -->
+    <header class="header slide-in-top">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="images/logo-ccp.png" alt="CCP Soluções Contábeis" class="logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="sobre.html" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="servicos.html" class="nav-link">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contato.html" class="nav-link">Contato</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <div class="maintenance-container">
-        <!-- Logo -->
-        <div class="logo">
-            <img src="images/logo-ccp.png" alt="CCP Soluções Contábeis">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Soluções Contábeis <br>
+                    <span class="text-primary slide-in-left">para Você e sua Empresa</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Mais de 20 anos de experiência oferecendo assessoria contábil completa, 
+                    personalizada e humanizada para empresas de todos os segmentos.
+                </p>
+                <div class="hero-buttons">
+                    <a href="contato.html" class="btn btn-primary btn-slide-in">
+                        <i class="fas fa-comments"></i>
+                        Fale Conosco
+                    </a>
+                    <a href="servicos.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i>
+                        Nossos Serviços
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-contabilidade.jpg" alt="Soluções Contábeis CCP">
+            </div>
         </div>
+    </section>
 
-        <!-- Ícone de manutenção -->
-        <div class="maintenance-icon">
-            <i class="fas fa-cog"></i>
+    <!-- Services Highlights -->
+    <section class="services-highlights">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Principais Serviços</h2>
+                <p class="section-subtitle">Soluções completas para todas as necessidades da sua empresa</p>
+            </div>
+            <div class="services-grid">
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="service-title">Abertura de Empresa</h3>
+                    <p class="service-description">Consultoria completa para abertura do seu negócio com agilidade e segurança jurídica.</p>
+                </a>
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="service-title">Imposto de Renda</h3>
+                    <p class="service-description">Declaração completa do IR para pessoa física e jurídica com máxima restituição.</p>
+                </a>
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="service-title">Certificação Digital</h3>
+                    <p class="service-description">ECF e ECNPJ - Certificados digitais para pessoa física e jurídica.</p>
+                </a>
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="service-title">Departamento Pessoal</h3>
+                    <p class="service-description">Gestão completa de RH, folha de pagamento e obrigações trabalhistas.</p>
+                </a>
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="service-title">Consultoria Fiscal</h3>
+                    <p class="service-description">Planejamento tributário para reduzir custos e aumentar a eficiência.</p>
+                </a>
+                <a href="servicos.html" class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="service-title">Assessoria Empresarial</h3>
+                    <p class="service-description">Suporte estratégico para tomada de decisões e crescimento do negócio.</p>
+                </a>
+            </div>
         </div>
+    </section>
 
-        <!-- Título -->
-        <h1 class="maintenance-title">Site em Manutenção</h1>
-
-        <!-- Subtítulo -->
-        <p class="maintenance-subtitle">
-            Estamos trabalhando para melhorar sua experiência
-        </p>
-
-        <!-- Mensagem principal -->
-        <div class="maintenance-message">
-            <p>
-                <strong>Nosso site está temporariamente fora do ar</strong> para manutenção e melhorias. 
-                Estamos implementando novas funcionalidades para oferecer um serviço ainda melhor.
-            </p>
-            <p>
-                Durante este período, nossa equipe continua atendendo normalmente através dos 
-                canais de contato abaixo. Não hesite em nos procurar!
-            </p>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">O que nossos clientes dizem</h2>
+                <p class="section-subtitle">Confiança e qualidade reconhecidas há mais de 20 anos</p>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonial-item active">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "A CCP transformou completamente a gestão contábil da nossa empresa. 
+                            O atendimento é excepcional e sempre conseguem otimizar nossos tributos."
+                        </p>
+                        <div class="testimonial-author">
+                            
+                            <div class="author-info">
+                                <h4 class="author-name">Maria Silva</h4>
+                                <p class="author-position">CEO, TechStart Ltda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Profissionais extremamente competentes e comprometidos. Desde que contratamos 
+                            a CCP, nossa empresa tem crescido de forma organizada e segura."
+                        </p>
+                        <div class="testimonial-author">
+                            
+                            <div class="author-info">
+                                <h4 class="author-name">João Santos</h4>
+                                <p class="author-position">Diretor, Construtora Santos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "O que mais me impressiona é o atendimento humanizado. Sempre que preciso, 
+                            tenho acesso direto ao contador para esclarecer minhas dúvidas."
+                        </p>
+                        <div class="testimonial-author">
+                            
+                            <div class="author-info">
+                                <h4 class="author-name">Ana Costa</h4>
+                                <p class="author-position">Proprietária, Boutique Ana</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <button class="nav-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonial-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+                <button class="nav-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
+    </section>
 
-        <!-- Previsão de retorno -->
-        <div class="return-estimate">
-            <h3><i class="fas fa-clock"></i> Previsão de Retorno</h3>
-            <p>
-                Estimamos que o site estará de volta em algumas horas. 
-                Agradecemos sua compreensão e paciência.
-            </p>
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h2 class="section-title">Por que escolher a CCP?</h2>
+                    <p class="section-subtitle">
+                        Experiência, qualidade e compromisso com o seu sucesso
+                    </p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>+20 Anos de Experiência</h4>
+                                <p>Mais de duas décadas atendendo empresas de todos os segmentos</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Equipe Especializada</h4>
+                                <p>Profissionais altamente qualificados em todas as áreas contábeis</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Atendimento Humanizado</h4>
+                                <p>Relacionamento próximo e personalizado com cada cliente</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Segurança e Confiabilidade</h4>
+                                <p>100% de confiabilidade em todos os nossos processos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Clientes Atendidos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="20">0</div>
+                        <div class="stat-label">Anos de Experiência</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">% Satisfação</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Adicionar mais partículas dinamicamente
-        function createParticles() {
-            const particles = document.querySelector('.particles');
-            
-            for (let i = 6; i <= 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
-                particles.appendChild(particle);
-            }
-        }
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Fale com um contador agora mesmo!</h2>
+                <p class="cta-subtitle">
+                    Tire suas dúvidas, solicite uma consultoria gratuita e descubra como 
+                    podemos ajudar sua empresa a crescer de forma organizada e eficiente.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://api.whatsapp.com/send?phone=554892226800&text=Olá! Gostaria de saber mais sobre os serviços da CCP Soluções Contábeis." 
+                       class="btn btn-primary btn-slide-in" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    <a href="contato.html" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                        Enviar E-mail
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Inicializar partículas
-        createParticles();
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
 
-        // Atualizar data/hora atual
-        function updateDateTime() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            
-            // Você pode adicionar isso se quiser mostrar a data/hora da manutenção
-            console.log('Manutenção iniciada em:', now.toLocaleDateString('pt-BR', options));
-        }
-
-        updateDateTime();
-    </script>
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
